@@ -2,7 +2,7 @@ extends CharacterBody3D
 # wasd / joystick
 var inputvec : Vector2
 # player speed
-var speed : float = 2
+var speed : float = 3
 # mouse movement
 var mousevec : Vector2
 # mouse sensitivity
