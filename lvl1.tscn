@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtvyugnintxwa"]
+
+[ext_resource type="Script" path="res://lvl_1.gd" id="1_518ua"]
+[ext_resource type="Sky" uid="uid://3l5rwrw0b34u" path="res://level1sky.tres" id="1_okdhb"]
+[ext_resource type="PackedScene" uid="uid://cfnqexvqxi05e" path="res://lvl1current.tscn" id="3_asgcq"]
+[ext_resource type="PackedScene" uid="uid://jdcorj0dh738" path="res://player.tscn" id="5_88c6i"]
+[ext_resource type="FontFile" uid="uid://cn772ymn6gtnx" path="res://Montserrat-SemiBold.otf" id="5_e00d4"]
+[ext_resource type="AudioStream" uid="uid://b51yb6oycvd3r" path="res://epicchorale.wav" id="6_w7rdj"]
+
+[sub_resource type="Environment" id="Environment_2asr7"]
+background_mode = 2
+sky = ExtResource("1_okdhb")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1wxuj"]
+radius = 7.042
+
+[node name="lvl1" type="Node3D"]
+script = ExtResource("1_518ua")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2asr7")
+
+[node name="level" type="Node3D" parent="."]
+
+[node name="lvl1current" parent="level" instance=ExtResource("3_asgcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="player" parent="." instance=ExtResource("5_88c6i")]
+
+[node name="impossibility" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -18.955)
+text = "Multiverse studios regrets to inform you that the following obstacle is impossible. Make no attempt to cross it. "
+
+[node name="Area3D" type="Area3D" parent="impossibility"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="impossibility/Area3D"]
+shape = SubResource("SphereShape3D_1wxuj")
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00277506, 0.999996, 0, -0.999996, -0.00277506, 3.578, -4.9, -16.618)
+modulate = Color(1, 1, 1, 0)
+outline_modulate = Color(0, 0.701961, 0.941176, 1)
+text = "J"
+font = ExtResource("5_e00d4")
+font_size = 128
+
+[node name="Choraleplayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_w7rdj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
